@@ -6,4 +6,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SMIT.Assignment.NumberSeries\SMIT.Assignment.Numbers.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,82 @@
+﻿<Window x:Class="SMIT.Assignment.NumberSeriesUI.Views.NumbersView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SMIT.Assignment.NumberSeriesUI.Views"
+        xmlns:vm="clr-namespace:SMIT.Assignment.NumberSeriesUI.ViewModels"
+        xmlns:numbers="clr-namespace:SMIT.Assignment.Numbers;assembly=SMIT.Assignment.Numbers"
+        mc:Ignorable="d"
+        Title="Numbers"  Height="450" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.DataContext>
+        <vm:NumbersViewModel></vm:NumbersViewModel>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FF053865"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+        <Style x:Key="txtStyle" TargetType="TextBox">
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#FFC8F0EC"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <!--<Setter Property="Margin" Value="2"/>-->
+        </Style>
+        <Style x:Key="PageStyleButton" TargetType="{x:Type Button}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF002042" Offset="1"/>
+                        <GradientStop Color="#FF053865" Offset="0.5"/>
+                        <GradientStop Color="#FF335978" Offset="0"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"></Setter>
+
+        </Style>
+
+    </Window.Resources>
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" ></ColumnDefinition>
+            <ColumnDefinition Width="8*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <GroupBox  Grid.Column="1"  Grid.Row="1" Background="AliceBlue" BorderThickness="2" BorderBrush="CornflowerBlue" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" ></RowDefinition>
+                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                    <TextBlock Text="Number" Style="{StaticResource TextBlockStyle}"  ></TextBlock>
+                    <Separator Margin="5"></Separator>
+                    <TextBox    Style="{StaticResource txtStyle}" Text="{Binding Number }"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2">
+                    <Button Grid.Row="3" Grid.Column="2"  Content="Generate" Width="100" Height="30" Style="{StaticResource PageStyleButton}" VerticalAlignment="Center" Command="{Binding GenerateCommand}" IsEnabled="{Binding IsEnabled}" ></Button>
+                </StackPanel>
+
+            </Grid>
+
+        </GroupBox>
+        <!--<GroupBox  Grid.Column="1"  Grid.Row="2" Background="AliceBlue" BorderThickness="2" BorderBrush="CornflowerBlue" >-->
+        <ListBox Grid.Column="1"  Grid.Row="2" Background="AliceBlue" BorderThickness="2" BorderBrush="CornflowerBlue" ItemsSource="{Binding Source={x:Static numbers:NumberModel.Instance},Path=Series}" ></ListBox>
+
+        <!--</GroupBox>-->
+    </Grid>
+</Window>
